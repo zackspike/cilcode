@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-_MODEL_NAME = "gemini-1.5-pro"
+_MODEL_NAME = "gemini-2.5-flash"
 _DEFAULT_RUBRIC_PATH = Path(__file__).parent / "rubrics" / "elementary1_cil.json"
 
 _CLAVE_RE = re.compile(r"^[a-z][a-z0-9_]*$")

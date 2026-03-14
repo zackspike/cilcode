@@ -1,0 +1,22 @@
+{
+  "vocabulario": 1,
+  "precision_gramatical": 1,
+  "pronunciacion_fluidez": 1,
+  "contenido_organizacion": 1,
+  "lenguaje_corporal_tiempo_preparacion": 1,
+  "puntuacion_total": 5,
+  "aprobado": false,
+  "fortalezas": [
+    "El alumno mostró una buena presencia física y atención durante la grabación, con un contacto visual consistentemente alto según los metadatos.",
+    "El habla en español fue clara y fluida."
+  ],
+  "areas_mejora": [
+    "Es fundamental que el alumno presente en el idioma requerido (inglés) para la tarea asignada, ya que la presentación se realizó íntegramente en español.",
+    "Preparar y desarrollar contenido relevante para la tarea específica del nivel Elementary 1 en inglés.",
+    "Ampliar y utilizar el vocabulario básico de inglés acorde al nivel.",
+    "Aplicar las estructuras gramaticales básicas de inglés.",
+    "Practicar la pronunciación, entonación y fluidez en inglés.",
+    "Asegurarse de cumplir con la duración esperada para una presentación."
+  ],
+  "resumen": "La presentación del alumno fue realizada en su totalidad en español, lo que imposibilita la evaluación de su dominio del idioma inglés en los criterios de vocabulario, precisión gramatical, pronunciación y fluidez. Aunque los metadatos corporales indican buena atención, el contenido sugiere una completa falta de preparación para la tarea asignada en inglés. Esto resulta en una evaluación no aprobatoria, ya que no se cumplió con el requisito fundamental del idioma de presentación."
+}
