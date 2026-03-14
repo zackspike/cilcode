@@ -32,6 +32,20 @@ _EVALUATION = {
     "areas_mejora": [],
     "resumen": "Presentación sobresaliente.",
 }
+_MINIMAL_RUBRIC = {
+    "nivel": "Test Level",
+    "idioma": "en",
+    "escala_min": 1,
+    "escala_max": 5,
+    "umbral_aprobatorio": 6,
+    "descripcion_escala": {
+        "1": "Weak", "2": "Fair", "3": "Moderate", "4": "Good", "5": "Excellent",
+    },
+    "criterios": [
+        {"clave": "grammar", "nombre": "Grammar", "descripcion": "Grammar control."},
+        {"clave": "fluency", "nombre": "Fluency", "descripcion": "Speech fluency."},
+    ],
+}
 
 
 class TestRun:
@@ -71,6 +85,47 @@ class TestRun:
         with pytest.raises(FileNotFoundError):
             main.run(str(tmp_path / "nonexistent.mp4"))
 
+    def test_run_passes_rubric_to_evaluate(self, tmp_path):
+        dummy_video = tmp_path / "pres.mp4"
+        dummy_video.write_bytes(b"\x00")
+
+        with (
+            patch("main.audio_processor.transcribe", return_value=_TRANSCRIPT_DATA),
+            patch("main.video_processor.analyse", return_value=_MP_METADATA),
+            patch("main.evaluator.evaluate", return_value=_EVALUATION) as mock_evaluate,
+        ):
+            main.run(str(dummy_video), rubric=_MINIMAL_RUBRIC)
+
+        _, kwargs = mock_evaluate.call_args
+        assert kwargs.get("rubric") == _MINIMAL_RUBRIC
+
+    def test_run_with_valid_rubric_file(self, tmp_path):
+        dummy_video = tmp_path / "pres.mp4"
+        dummy_video.write_bytes(b"\x00")
+        rubric_file = tmp_path / "rubric.json"
+        rubric_file.write_text(json.dumps(_MINIMAL_RUBRIC), encoding="utf-8")
+
+        rubric = main._load_rubric_from_args(str(rubric_file))
+
+        with (
+            patch("main.audio_processor.transcribe", return_value=_TRANSCRIPT_DATA),
+            patch("main.video_processor.analyse", return_value=_MP_METADATA),
+            patch("main.evaluator.evaluate", return_value=_EVALUATION),
+        ):
+            result = main.run(str(dummy_video), rubric=rubric)
+
+        assert result["puntuacion_global"] == 9
+
+    def test_load_rubric_from_args_raises_on_missing_file(self, tmp_path):
+        with pytest.raises(FileNotFoundError):
+            main._load_rubric_from_args(str(tmp_path / "nonexistent.json"))
+
+    def test_load_rubric_from_args_raises_on_invalid_json(self, tmp_path):
+        bad_file = tmp_path / "bad.json"
+        bad_file.write_text("not json", encoding="utf-8")
+        with pytest.raises(ValueError):
+            main._load_rubric_from_args(str(bad_file))
+
 
 class TestParseArgs:
     def test_defaults(self):
@@ -79,9 +134,14 @@ class TestParseArgs:
         assert args.whisper_model == "base"
         assert args.sample_every == 15
         assert args.save is False
+        assert args.rubric is None
 
     def test_custom_args(self):
         args = main._parse_args(["v.mp4", "--whisper-model", "small", "--sample-every", "30", "--save"])
         assert args.whisper_model == "small"
         assert args.sample_every == 30
         assert args.save is True
+
+    def test_rubric_accepts_path_string(self):
+        args = main._parse_args(["video.mp4", "--rubric", "/some/path/rubric.json"])
+        assert args.rubric == "/some/path/rubric.json"

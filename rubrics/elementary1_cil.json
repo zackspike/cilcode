@@ -1,0 +1,41 @@
+{
+  "nivel": "Elementary 1",
+  "idioma": "en",
+  "escala_min": 1,
+  "escala_max": 5,
+  "umbral_aprobatorio": 15,
+  "descripcion_escala": {
+    "5": "Completo dominio / excelente",
+    "4": "Dominio adecuado / muy bueno",
+    "3": "Dominio inadecuado / algo adecuado",
+    "2": "Muy poco dominio / débil",
+    "1": "Ningún dominio / muy débil"
+  },
+  "criterios": [
+    {
+      "clave": "vocabulario",
+      "nombre": "Vocabulario",
+      "descripcion": "Control del vocabulario básico requerido para la presentación."
+    },
+    {
+      "clave": "precision_gramatical",
+      "nombre": "Precisión Gramatical",
+      "descripcion": "Control de las estructuras gramaticales básicas."
+    },
+    {
+      "clave": "pronunciacion_fluidez",
+      "nombre": "Pronunciación y Fluidez",
+      "descripcion": "Precisión de pronunciación/entonación y fluidez del habla."
+    },
+    {
+      "clave": "contenido_organizacion",
+      "nombre": "Contenido y Organización",
+      "descripcion": "Pertinencia del contenido y alineación con la tarea asignada."
+    },
+    {
+      "clave": "lenguaje_corporal_tiempo_preparacion",
+      "nombre": "Lenguaje Corporal, Tiempo y Preparación",
+      "descripcion": "Lenguaje corporal (contacto visual, postura, gestos), cumplimiento del tiempo y nivel de preparación (no lee notas)."
+    }
+  ]
+}

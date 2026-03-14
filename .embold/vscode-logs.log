@@ -1,0 +1,32 @@
+2026-03-14 12:42:32 info: Congratulations, your extension "Embold" is now active!
+2026-03-14 12:42:32 info: ************* init ****************
+2026-03-14 12:42:32 info: tempDirectory : c:\Users\isaac\.vscode\extensions\embold-vscode.embold-0.3.7\temp
+2026-03-14 12:42:36 error: SQLITE_ERROR: no such table: issues
+2026-03-14 12:42:37 info: Extraction complete for source: c:\Users\isaac\.vscode\extensions\embold-vscode.embold-0.3.7\resources\embold-scanner-archive.zip, destination: c:\Users\isaac\.vscode\extensions\embold-vscode.embold-0.3.7\temp
+2026-03-14 12:42:37 info: Extension installed on machine OS : win32
+2026-03-14 12:42:37 info: NO_PROXY set from VS Code http.noProxy: 
+2026-03-14 12:42:37 info: NODE_TLS_REJECT_UNAUTHORIZED not set (SSL verification enabled)
+2026-03-14 12:42:37 info: Using system certificates for SSL verification
+2026-03-14 12:42:37 info: Server issues database initialized successfully
+2026-03-14 12:42:37 info: Loaded 0 server issues on startup
+2026-03-14 12:42:37 info: [STARTUP] Processing 0 total issues from database
+2026-03-14 12:42:37 info: [STARTUP] Issues sorted by file path
+2026-03-14 12:42:37 info: [STARTUP] Complete - Processed: 0, Skipped: 0
+2026-03-14 12:42:37 info: Fetched the issues from DB
+2026-03-14 12:42:37 info: Java version installed on machine : 
+openjdk version "21.0.8" 2025-07-15 LTS
+OpenJDK Runtime Environment Temurin-21.0.8+9 (build 21.0.8+9-LTS)
+OpenJDK 64-Bit Server VM Temurin-21.0.8+9 (build 21.0.8+9-LTS, mixed mode, sharing)
+
+2026-03-14 12:42:37 info: Java installed on machine.
+2026-03-14 12:42:37 info: Embold extension version response:{"hasSupport":false,"version":"0.2.1","changeNotes":"<div> <p>Release Date: 30 Apr, 2025 <br><span>Bug fixes and improvements.</span></p> </div>"}
+2026-03-14 12:42:37 info: Current installed embold extension version : 0.3.7
+2026-03-14 12:42:37 info: Latest embold extension version on marketplace : 0.2.1
+2026-03-14 12:42:37 info: Current extension version: 0.3.7
+2026-03-14 12:42:37 info: Stored extension version: 0.3.7
+2026-03-14 12:42:37 info: No new installation or upgrade detected. Skipping plugin activation tracking.
+2026-03-14 12:58:40 error: SQLITE_ERROR: no such table: issues
+2026-03-14 13:01:01 error: SQLITE_ERROR: no such table: issues
+2026-03-14 13:30:05 error: SQLITE_ERROR: no such table: issues
+2026-03-14 13:36:06 error: SQLITE_ERROR: no such table: issues
+2026-03-14 13:36:12 error: SQLITE_ERROR: no such table: issues
