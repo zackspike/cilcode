@@ -1,0 +1,576 @@
+2026-03-14 12:42:32 info: Congratulations, your extension "Embold" is now active!
+2026-03-14 12:42:32 info: ************* init ****************
+2026-03-14 12:42:32 info: tempDirectory : c:\Users\isaac\.vscode\extensions\embold-vscode.embold-0.3.7\temp
+2026-03-14 12:42:36 error: SQLITE_ERROR: no such table: issues
+2026-03-14 12:42:37 info: Extraction complete for source: c:\Users\isaac\.vscode\extensions\embold-vscode.embold-0.3.7\resources\embold-scanner-archive.zip, destination: c:\Users\isaac\.vscode\extensions\embold-vscode.embold-0.3.7\temp
+2026-03-14 12:42:37 info: Extension installed on machine OS : win32
+2026-03-14 12:42:37 info: NO_PROXY set from VS Code http.noProxy: 
+2026-03-14 12:42:37 info: NODE_TLS_REJECT_UNAUTHORIZED not set (SSL verification enabled)
+2026-03-14 12:42:37 info: Using system certificates for SSL verification
+2026-03-14 12:42:37 info: Server issues database initialized successfully
+2026-03-14 12:42:37 info: Loaded 0 server issues on startup
+2026-03-14 12:42:37 info: [STARTUP] Processing 0 total issues from database
+2026-03-14 12:42:37 info: [STARTUP] Issues sorted by file path
+2026-03-14 12:42:37 info: [STARTUP] Complete - Processed: 0, Skipped: 0
+2026-03-14 12:42:37 info: Fetched the issues from DB
+2026-03-14 12:42:37 info: Java version installed on machine : 
+openjdk version "21.0.8" 2025-07-15 LTS
+OpenJDK Runtime Environment Temurin-21.0.8+9 (build 21.0.8+9-LTS)
+OpenJDK 64-Bit Server VM Temurin-21.0.8+9 (build 21.0.8+9-LTS, mixed mode, sharing)
+
+2026-03-14 12:42:37 info: Java installed on machine.
+2026-03-14 12:42:37 info: Embold extension version response:{"hasSupport":false,"version":"0.2.1","changeNotes":"<div> <p>Release Date: 30 Apr, 2025 <br><span>Bug fixes and improvements.</span></p> </div>"}
+2026-03-14 12:42:37 info: Current installed embold extension version : 0.3.7
+2026-03-14 12:42:37 info: Latest embold extension version on marketplace : 0.2.1
+2026-03-14 12:42:37 info: Current extension version: 0.3.7
+2026-03-14 12:42:37 info: Stored extension version: 0.3.7
+2026-03-14 12:42:37 info: No new installation or upgrade detected. Skipping plugin activation tracking.
+2026-03-14 12:58:40 error: SQLITE_ERROR: no such table: issues
+2026-03-14 13:01:01 error: SQLITE_ERROR: no such table: issues
+2026-03-14 13:30:05 error: SQLITE_ERROR: no such table: issues
+2026-03-14 13:36:06 error: SQLITE_ERROR: no such table: issues
+2026-03-14 13:36:12 error: SQLITE_ERROR: no such table: issues
+2026-03-14 13:36:16 error: SQLITE_ERROR: no such table: issues
+2026-03-14 13:36:37 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:02:57 info: Congratulations, your extension "Embold" is now active!
+2026-03-14 16:02:57 info: ************* init ****************
+2026-03-14 16:02:57 info: tempDirectory : c:\Users\isaac\.vscode\extensions\embold-vscode.embold-0.3.7\temp
+2026-03-14 16:03:07 info: Extraction complete for source: c:\Users\isaac\.vscode\extensions\embold-vscode.embold-0.3.7\resources\embold-scanner-archive.zip, destination: c:\Users\isaac\.vscode\extensions\embold-vscode.embold-0.3.7\temp
+2026-03-14 16:03:07 info: Extension installed on machine OS : win32
+2026-03-14 16:03:07 info: NO_PROXY set from VS Code http.noProxy: 
+2026-03-14 16:03:07 info: NODE_TLS_REJECT_UNAUTHORIZED not set (SSL verification enabled)
+2026-03-14 16:03:07 info: Using system certificates for SSL verification
+2026-03-14 16:03:08 info: Server issues database initialized successfully
+2026-03-14 16:03:08 info: Loaded 0 server issues on startup
+2026-03-14 16:03:08 info: [STARTUP] Processing 0 total issues from database
+2026-03-14 16:03:08 info: [STARTUP] Issues sorted by file path
+2026-03-14 16:03:08 info: [STARTUP] Complete - Processed: 0, Skipped: 0
+2026-03-14 16:03:08 info: Fetched the issues from DB
+2026-03-14 16:03:08 info: Java version installed on machine : 
+openjdk version "21.0.8" 2025-07-15 LTS
+OpenJDK Runtime Environment Temurin-21.0.8+9 (build 21.0.8+9-LTS)
+OpenJDK 64-Bit Server VM Temurin-21.0.8+9 (build 21.0.8+9-LTS, mixed mode, sharing)
+
+2026-03-14 16:03:08 info: Java installed on machine.
+2026-03-14 16:03:08 info: Embold extension version response:{"hasSupport":false,"version":"0.2.1","changeNotes":"<div> <p>Release Date: 30 Apr, 2025 <br><span>Bug fixes and improvements.</span></p> </div>"}
+2026-03-14 16:03:08 info: Current installed embold extension version : 0.3.7
+2026-03-14 16:03:08 info: Latest embold extension version on marketplace : 0.2.1
+2026-03-14 16:03:08 info: Current extension version: 0.3.7
+2026-03-14 16:03:08 info: Stored extension version: 0.3.7
+2026-03-14 16:03:08 info: No new installation or upgrade detected. Skipping plugin activation tracking.
+2026-03-14 16:03:12 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:03:13 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:03:13 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:03:13 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:03:14 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:03:14 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:03:15 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:03:15 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:03:16 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:03:16 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:03:17 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:03:17 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:03:17 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:03:18 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:03:18 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:03:20 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:03:57 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:03:58 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:00 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:00 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:00 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:00 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:01 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:04 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:06 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:06 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:06 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:07 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:08 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:08 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:09 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:09 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:10 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:10 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:10 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:11 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:12 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:12 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:12 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:13 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:14 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:14 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:14 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:15 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:15 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:15 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:15 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:15 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:16 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:16 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:17 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:17 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:18 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:18 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:18 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:19 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:20 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:20 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:20 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:20 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:20 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:21 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:22 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:23 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:23 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:24 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:25 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:25 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:25 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:26 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:27 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:27 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:28 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:28 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:28 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:29 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:30 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:30 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:30 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:31 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:31 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:31 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:32 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:32 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:32 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:32 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:32 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:33 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:33 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:33 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:33 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:34 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:35 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:35 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:35 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:35 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:35 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:36 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:38 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:38 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:39 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:39 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:39 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:40 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:40 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:40 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:41 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:42 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:42 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:42 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:42 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:42 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:43 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:43 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:45 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:46 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:46 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:46 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:47 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:47 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:47 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:47 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:47 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:48 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:48 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:48 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:48 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:49 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:49 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:49 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:49 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:49 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:49 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:49 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:49 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:49 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:49 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:50 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:50 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:50 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:50 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:50 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:51 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:51 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:52 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:52 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:52 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:52 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:53 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:53 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:53 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:54 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:54 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:54 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:55 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:55 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:56 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:56 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:56 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:58 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:58 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:59 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:04:59 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:00 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:00 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:01 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:02 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:02 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:02 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:02 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:03 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:03 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:05 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:05 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:05 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:06 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:06 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:07 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:07 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:08 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:09 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:10 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:10 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:11 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:11 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:12 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:12 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:13 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:13 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:14 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:15 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:15 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:16 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:18 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:18 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:18 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:19 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:19 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:20 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:20 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:21 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:21 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:21 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:21 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:22 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:24 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:24 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:25 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:25 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:25 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:25 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:25 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:26 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:26 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:26 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:26 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:26 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:27 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:27 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:28 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:28 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:28 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:28 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:28 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:29 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:32 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:33 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:34 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:34 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:34 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:34 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:34 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:35 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:35 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:35 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:35 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:35 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:35 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:36 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:36 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:36 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:36 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:36 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:37 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:37 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:37 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:37 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:37 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:37 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:38 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:38 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:38 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:38 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:38 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:38 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:38 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:38 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:38 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:38 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:38 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:39 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:39 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:39 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:39 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:39 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:39 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:40 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:40 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:41 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:41 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:41 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:41 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:41 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:42 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:42 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:42 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:43 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:43 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:44 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:44 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:44 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:45 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:45 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:45 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:46 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:46 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:47 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:05:48 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:04 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:07 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:07 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:07 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:07 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:08 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:09 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:09 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:09 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:09 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:10 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:11 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:11 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:11 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:11 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:11 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:11 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:11 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:11 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:13 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:13 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:13 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:13 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:13 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:13 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:13 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:13 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:14 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:14 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:14 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:14 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:14 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:14 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:15 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:15 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:16 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:16 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:16 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:17 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:17 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:18 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:18 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:18 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:19 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:20 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:20 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:21 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:21 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:21 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:21 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:22 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:22 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:22 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:23 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:23 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:23 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:24 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:25 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:25 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:25 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:25 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:26 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:26 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:27 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:28 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:28 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:28 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:29 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:30 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:30 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:30 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:30 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:31 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:31 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:32 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:32 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:32 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:33 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:33 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:34 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:34 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:34 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:35 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:36 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:36 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:37 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:37 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:37 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:38 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:38 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:38 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:38 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:38 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:38 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:39 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:39 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:39 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:39 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:39 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:39 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:40 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:40 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:41 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:42 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:42 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:42 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:44 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:44 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:44 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:44 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:45 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:45 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:45 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:45 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:45 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:46 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:46 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:46 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:46 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:46 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:46 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:47 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:47 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:47 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:48 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:48 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:49 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:49 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:50 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:50 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:50 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:51 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:51 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:51 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:52 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:53 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:55 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:55 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:56 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:56 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:56 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:56 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:58 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:58 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:58 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:59 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:59 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:59 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:59 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:59 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:06:59 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:00 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:00 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:01 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:01 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:01 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:02 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:03 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:03 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:03 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:03 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:04 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:04 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:04 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:04 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:04 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:05 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:05 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:05 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:06 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:06 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:07 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:08 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:08 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:09 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:09 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:09 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:09 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:09 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:09 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:09 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:10 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:10 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:11 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:11 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:11 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:11 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:12 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:07:12 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:09:33 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:26:10 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:26:10 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:26:10 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:29:20 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:29:25 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:29:36 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:30:06 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:44:49 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:45:21 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:47:23 error: SQLITE_ERROR: no such table: issues
+2026-03-14 16:48:02 error: SQLITE_ERROR: no such table: issues
+2026-03-16 16:32:25 info: Congratulations, your extension "Embold" is now active!
+2026-03-16 16:32:25 info: ************* init ****************
+2026-03-16 16:32:25 info: tempDirectory : c:\Users\isaac\.vscode\extensions\embold-vscode.embold-0.3.7\temp
+2026-03-16 16:32:32 info: Extraction complete for source: c:\Users\isaac\.vscode\extensions\embold-vscode.embold-0.3.7\resources\embold-scanner-archive.zip, destination: c:\Users\isaac\.vscode\extensions\embold-vscode.embold-0.3.7\temp
+2026-03-16 16:32:32 info: Extension installed on machine OS : win32
+2026-03-16 16:32:32 info: NO_PROXY set from VS Code http.noProxy: 
+2026-03-16 16:32:32 info: NODE_TLS_REJECT_UNAUTHORIZED not set (SSL verification enabled)
+2026-03-16 16:32:32 info: Using system certificates for SSL verification
+2026-03-16 16:32:32 info: Server issues database initialized successfully
+2026-03-16 16:32:32 info: Loaded 0 server issues on startup
+2026-03-16 16:32:32 info: [STARTUP] Processing 0 total issues from database
+2026-03-16 16:32:32 info: [STARTUP] Issues sorted by file path
+2026-03-16 16:32:32 info: [STARTUP] Complete - Processed: 0, Skipped: 0
+2026-03-16 16:32:32 info: Fetched the issues from DB
+2026-03-16 16:32:32 info: Java version installed on machine : 
+openjdk version "21.0.8" 2025-07-15 LTS
+OpenJDK Runtime Environment Temurin-21.0.8+9 (build 21.0.8+9-LTS)
+OpenJDK 64-Bit Server VM Temurin-21.0.8+9 (build 21.0.8+9-LTS, mixed mode, sharing)
+
+2026-03-16 16:32:32 info: Java installed on machine.
+2026-03-16 16:32:34 error: SQLITE_ERROR: no such table: issues
+2026-03-16 16:32:35 info: Embold extension version response:{"hasSupport":false,"version":"0.2.1","changeNotes":"<div> <p>Release Date: 30 Apr, 2025 <br><span>Bug fixes and improvements.</span></p> </div>"}
+2026-03-16 16:32:35 info: Current installed embold extension version : 0.3.7
+2026-03-16 16:32:35 info: Latest embold extension version on marketplace : 0.2.1
+2026-03-16 16:32:35 info: Current extension version: 0.3.7
+2026-03-16 16:32:35 info: Stored extension version: 0.3.7
+2026-03-16 16:32:35 info: No new installation or upgrade detected. Skipping plugin activation tracking.

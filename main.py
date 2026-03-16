@@ -53,7 +53,36 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         action="store_true",
         help="Save the evaluation JSON next to the video file.",
     )
+    parser.add_argument(
+        "--rubric",
+        default=None,
+        metavar="RUBRIC_PATH",
+        help="Ruta a archivo JSON de rúbrica personalizada. Default: Elementary 1 CIL.",
+    )
     return parser.parse_args(argv)
+
+
+def _load_rubric_from_args(rubric_path: str | None) -> dict:
+    """Load and validate a rubric from the given path (or the default).
+
+    Parameters
+    ----------
+    rubric_path:
+        Path string from ``--rubric`` argument, or ``None`` for the default.
+
+    Returns
+    -------
+    dict
+        Validated rubric dictionary.
+
+    Raises
+    ------
+    FileNotFoundError
+        If the file does not exist.
+    ValueError
+        If the file is not valid JSON or fails schema validation.
+    """
+    return evaluator.load_rubric(rubric_path)
 
 
 def run(
@@ -61,6 +90,7 @@ def run(
     whisper_model: str = "base",
     sample_every: int = 15,
     save: bool = False,
+    rubric: dict | None = None,
 ) -> dict:
     """Run the full evaluation pipeline.
 
@@ -74,6 +104,8 @@ def run(
         Frame sampling interval for MediaPipe.
     save:
         If *True*, write the evaluation JSON next to the source video.
+    rubric:
+        Validated rubric dictionary.  ``None`` uses the default Elementary 1 CIL rubric.
 
     Returns
     -------
@@ -96,7 +128,7 @@ def run(
     print(f"      Avg attention score: {mp_metadata['avg_attention_score']:.2f}")
 
     print("\n[3/3] Requesting evaluation from Gemini 1.5-pro …")
-    evaluation = evaluator.evaluate(transcript, mp_metadata)
+    evaluation = evaluator.evaluate(transcript, mp_metadata, rubric=rubric)
 
     print("\n=== Evaluation Result ===")
     print(json.dumps(evaluation, ensure_ascii=False, indent=2))
@@ -112,11 +144,21 @@ def run(
 def main(argv: list[str] | None = None) -> None:
     args = _parse_args(argv)
     try:
+        rubric = _load_rubric_from_args(args.rubric)
+    except FileNotFoundError as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        sys.exit(1)
+    except ValueError as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        sys.exit(1)
+
+    try:
         run(
             args.video,
             whisper_model=args.whisper_model,
             sample_every=args.sample_every,
             save=args.save,
+            rubric=rubric,
         )
     except (FileNotFoundError, EnvironmentError, ValueError) as exc:
         print(f"Error: {exc}", file=sys.stderr)
