@@ -1,15 +1,16 @@
 {
   "nivel": "Elementary 1",
   "idioma": "en",
+  "tema": "libre",
   "escala_min": 1,
   "escala_max": 5,
   "umbral_aprobatorio": 15,
   "descripcion_escala": {
-    "5": "Completo dominio / excelente",
-    "4": "Dominio adecuado / muy bueno",
-    "3": "Dominio inadecuado / algo adecuado",
+    "1": "Ningún dominio / muy débil",
     "2": "Muy poco dominio / débil",
-    "1": "Ningún dominio / muy débil"
+    "3": "Dominio inadecuado / algo adecuado",
+    "4": "Dominio adecuado / muy bueno",
+    "5": "Completo dominio / excelente"
   },
   "criterios": [
     {

@@ -159,12 +159,6 @@ def _extract_pose_metadata(pose_landmarks: list) -> dict:
         "right_wrist_raised": right_wrist_raised,
     }
 
-
-# ---------------------------------------------------------------------------
-# Public API
-# ---------------------------------------------------------------------------
-
-
 def analyse(
     video_path: str | os.PathLike,
     *,

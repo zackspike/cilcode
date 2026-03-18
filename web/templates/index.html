@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RevFast · Evaluador CIL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    /* ===== DESIGN TOKENS ===== */
+    :root {
+      --navy:        #1a2744;
+      --navy-light:  #243356;
+      --blue:        #3b82f6;
+      --blue-hover:  #2563eb;
+      --blue-dim:    rgba(59,130,246,0.12);
+      --green:       #059669;
+      --green-light: #d1fae5;
+      --red:         #dc2626;
+      --red-light:   #fee2e2;
+      --amber:       #d97706;
+      --amber-light: #fef3c7;
+      --cream:       #f7f5f1;
+      --white:       #ffffff;
+      --g100:        #f3f4f6;
+      --g200:        #e5e7eb;
+      --g300:        #d1d5db;
+      --g400:        #9ca3af;
+      --g500:        #6b7280;
+      --g700:        #374151;
+      --g900:        #111827;
+      --sidebar-w:   370px;
+      --header-h:    56px;
+      --r:           10px;
+      --r-sm:        6px;
+      --shadow:      0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md:   0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.05);
+      --t:           0.18s ease;
+    }
+
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--g700);
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ===== HEADER ===== */
+    .hdr {
+      background: var(--navy);
+      height: var(--header-h);
+      display: flex;
+      align-items: center;
+      padding: 0 1.5rem;
+      gap: 0.875rem;
+      flex-shrink: 0;
+      z-index: 20;
+    }
+    .hdr-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: #fff;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .hdr-logo em { color: #93c5fd; font-style: normal; }
+    .hdr-sep { width: 1px; height: 18px; background: rgba(255,255,255,0.18); }
+    .hdr-sub {
+      font-size: 0.725rem;
+      color: rgba(255,255,255,0.5);
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .hdr-pill {
+      margin-left: auto;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.55);
+      padding: 0.18rem 0.65rem;
+      border-radius: 100px;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ===== LAYOUT ===== */
+    .layout {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.12) transparent;
+    }
+    .sidebar::-webkit-scrollbar { width: 3px; }
+    .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+
+    .sb-section {
+      padding: 1.125rem 1.25rem;
+      border-bottom: 1px solid rgba(255,255,255,0.065);
+    }
+    .sb-section:last-of-type { border-bottom: none; }
+
+    .sb-label {
+      font-size: 0.67rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 0.75rem;
+    }
+
+    /* Upload zone */
+    .upload-zone {
+      border: 1.5px dashed rgba(255,255,255,0.18);
+      border-radius: var(--r);
+      padding: 1.25rem 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all var(--t);
+      background: rgba(255,255,255,0.03);
+      position: relative;
+    }
+    .upload-zone:hover, .upload-zone.drag-over {
+      border-color: rgba(147,197,253,0.55);
+      background: rgba(59,130,246,0.07);
+    }
+    .upload-zone input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+    .upload-ico {
+      width: 28px; height: 28px;
+      margin: 0 auto 0.5rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .upload-zone p {
+      font-size: 0.775rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.5;
+    }
+    .upload-filename {
+      font-size: 0.775rem;
+      color: #93c5fd;
+      font-weight: 500;
+      word-break: break-all;
+      margin-top: 0.3rem;
+      display: none;
+    }
+
+    /* Form controls */
+    .frow { margin-bottom: 0.65rem; }
+    .frow:last-child { margin-bottom: 0; }
+    .flabel {
+      display: block;
+      font-size: 0.725rem;
+      color: rgba(255,255,255,0.42);
+      margin-bottom: 0.28rem;
+      font-weight: 500;
+    }
+    .fcontrol {
+      width: 100%;
+      padding: 0.42rem 0.6rem;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--r-sm);
+      color: rgba(255,255,255,0.88);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.825rem;
+      transition: border-color var(--t), background var(--t);
+      outline: none;
+    }
+    .fcontrol:focus {
+      border-color: rgba(147,197,253,0.6);
+      background: rgba(59,130,246,0.08);
+    }
+    .fcontrol option { background: #1a2744; color: white; }
+    .fhint {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.25);
+      margin-top: 0.18rem;
+    }
+
+    /* Tema input — accent left-border */
+    .tema-wrap { position: relative; }
+    .tema-wrap::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2.5px;
+      background: var(--blue);
+      border-radius: 2px 0 0 2px;
+      z-index: 1;
+    }
+    .tema-wrap .fcontrol { padding-left: 0.75rem; border-left-color: rgba(59,130,246,0.35); }
+
+    /* Inline grid */
+    .fgrid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.65rem; }
+
+    /* Accordion */
+    .accordion-hdr {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    .accordion-hdr .sb-label { margin: 0; }
+    .acc-chevron {
+      margin-left: auto;
+      color: rgba(255,255,255,0.3);
+      transition: transform var(--t);
+      flex-shrink: 0;
+    }
+    .accordion-hdr.open .acc-chevron { transform: rotate(180deg); }
+    .accordion-body { display: none; margin-top: 0.75rem; }
+    .accordion-body.open { display: block; }
+
+    /* Rubric tabs */
+    .r-tabs { display: flex; gap: 2px; margin-bottom: 0.7rem; background: rgba(0,0,0,0.15); border-radius: 6px; padding: 2px; }
+    .r-tab {
+      flex: 1;
+      padding: 0.3rem 0;
+      text-align: center;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.4);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all var(--t);
+    }
+    .r-tab:hover { color: rgba(255,255,255,0.65); }
+    .r-tab.active { background: rgba(59,130,246,0.3); color: #93c5fd; }
+    .r-panel { display: none; }
+    .r-panel.active { display: block; }
+
+    /* Scale desc row */
+    .scale-row { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.35rem; }
+    .scale-badge {
+      width: 22px; height: 22px;
+      border-radius: 4px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Criterio card */
+    .crit-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 7px;
+      padding: 0.625rem 0.7rem;
+      margin-bottom: 0.4rem;
+    }
+    .crit-card-hdr {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .crit-num {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: rgba(59,130,246,0.25);
+      color: #93c5fd;
+      font-size: 0.65rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .crit-name-display {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .btn-ico {
+      background: none; border: none;
+      color: rgba(255,255,255,0.28);
+      cursor: pointer;
+      padding: 2px;
+      border-radius: 3px;
+      display: flex; align-items: center;
+      transition: all var(--t);
+      flex-shrink: 0;
+    }
+    .btn-ico:hover { color: rgba(255,255,255,0.65); background: rgba(255,255,255,0.07); }
+    .btn-ico.del:hover { color: #fca5a5; background: rgba(239,68,68,0.1); }
+    .crit-fields { display: none; padding-top: 0.5rem; }
+    .crit-fields .frow { margin-bottom: 0.35rem; }
+    .crit-fields.open { display: block; }
+
+    .btn-add-crit {
+      width: 100%;
+      padding: 0.4rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px dashed rgba(255,255,255,0.12);
+      border-radius: var(--r-sm);
+      color: rgba(255,255,255,0.38);
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all var(--t);
+      font-family: 'DM Sans', sans-serif;
+      margin-top: 0.35rem;
+    }
+    .btn-add-crit:hover {
+      background: rgba(59,130,246,0.07);
+      border-color: rgba(59,130,246,0.35);
+      color: #93c5fd;
+    }
+
+    /* Rubric action buttons */
+    .r-actions { display: flex; gap: 0.4rem; margin-top: 0.65rem; }
+    .btn-sm {
+      flex: 1;
+      padding: 0.4rem 0.5rem;
+      border-radius: var(--r-sm);
+      font-size: 0.75rem;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all var(--t);
+      border: none;
+    }
+    .btn-ghost { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.6); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.12); color: #fff; }
+    .btn-accent { background: rgba(59,130,246,0.22); color: #93c5fd; border: 1px solid rgba(59,130,246,0.28); }
+    .btn-accent:hover { background: rgba(59,130,246,0.38); }
+
+    /* Main evaluate button */
+    .btn-eval {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 0 1.25rem 1.25rem;
+      padding: 0.8rem 1rem;
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      border-radius: var(--r);
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all var(--t);
+      box-shadow: 0 4px 14px rgba(59,130,246,0.32);
+      flex-shrink: 0;
+    }
+    .btn-eval:hover:not(:disabled) {
+      background: var(--blue-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(59,130,246,0.42);
+    }
+    .btn-eval:active:not(:disabled) { transform: none; }
+    .btn-eval:disabled {
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.25);
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+
+    /* ===== CONTENT ===== */
+    .content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      scrollbar-width: thin;
+      scrollbar-color: var(--g200) transparent;
+    }
+    .content::-webkit-scrollbar { width: 5px; }
+    .content::-webkit-scrollbar-thumb { background: var(--g200); border-radius: 3px; }
+
+    /* Welcome */
+    .welcome {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 0.75rem;
+      padding: 3rem;
+    }
+    .welcome-ico { width: 52px; height: 52px; color: var(--g300); margin-bottom: 0.5rem; }
+    .welcome h2 { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--g900); font-weight: 400; }
+    .welcome p { font-size: 0.875rem; color: var(--g400); max-width: 380px; line-height: 1.65; }
+    .welcome-steps {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .ws {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.775rem;
+      color: var(--g400);
+    }
+    .ws-num {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--g100);
+      color: var(--g500);
+      font-weight: 600;
+      font-size: 0.75rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Progress */
+    .progress-view {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .progress-card {
+      background: var(--white);
+      border-radius: var(--r);
+      box-shadow: var(--shadow-md);
+      padding: 2.5rem 2.75rem;
+      width: 100%;
+      max-width: 440px;
+      text-align: center;
+    }
+    .prog-spinner {
+      width: 36px; height: 36px;
+      border: 3px solid var(--g100);
+      border-top-color: var(--blue);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+      margin: 0 auto 1.25rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .prog-title { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--g900); margin-bottom: 0.3rem; }
+    .prog-msg { font-size: 0.825rem; color: var(--g500); min-height: 1.3em; margin-bottom: 1.25rem; }
+    .prog-track { height: 7px; background: var(--g100); border-radius: 4px; overflow: hidden; margin-bottom: 0.875rem; }
+    .prog-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), #60a5fa);
+      border-radius: 4px;
+      transition: width 0.6s ease;
+      width: 0;
+    }
+    .prog-steps { display: flex; justify-content: space-between; }
+    .prog-step {
+      flex: 1;
+      text-align: center;
+      font-size: 0.65rem;
+      color: var(--g300);
+      position: relative;
+    }
+    .prog-step::before {
+      content: '';
+      display: block;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--g200);
+      margin: 0 auto 0.3rem;
+    }
+    .prog-step.done::before { background: var(--blue); }
+    .prog-step.active::before {
+      background: var(--blue);
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+      animation: pulse-dot 1.5s infinite;
+    }
+    .prog-step.done, .prog-step.active { color: var(--g500); }
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 0 3px rgba(59,130,246,0.2); }
+      50%       { box-shadow: 0 0 0 5px rgba(59,130,246,0.28); }
+    }
+
+    /* ===== RESULTS ===== */
+    .results-view {
+      display: flex;
+      flex-direction: column;
+      gap: 1.125rem;
+      max-width: 780px;
+      width: 100%;
+      margin: 0 auto;
+      animation: fadeUp 0.35s ease;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Status card */
+    .status-card {
+      border-radius: var(--r);
+      padding: 1.5rem 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      box-shadow: var(--shadow-md);
+    }
+    .status-card.ok  { background: linear-gradient(135deg, #ecfdf5, #d1fae5); border: 1px solid #a7f3d0; }
+    .status-card.nok { background: linear-gradient(135deg, #fff1f2, #fee2e2); border: 1px solid #fecaca; }
+
+    .status-ico {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    .ok  .status-ico { background: var(--green); color: white; }
+    .nok .status-ico { background: var(--red);   color: white; }
+
+    .status-body { flex: 1; min-width: 0; }
+    .status-verdict { font-family: 'DM Serif Display', serif; font-size: 1.35rem; font-weight: 400; }
+    .ok  .status-verdict { color: #065f46; }
+    .nok .status-verdict { color: #991b1b; }
+    .status-detail { font-size: 0.8rem; margin-top: 0.15rem; }
+    .ok  .status-detail { color: #047857; }
+    .nok .status-detail { color: #b91c1c; }
+
+    .status-score { text-align: right; flex-shrink: 0; }
+    .score-big { font-family: 'DM Serif Display', serif; font-size: 2.75rem; line-height: 1; }
+    .ok  .score-big { color: var(--green); }
+    .nok .score-big { color: var(--red); }
+    .score-of { font-size: 0.75rem; color: var(--g400); margin-top: 0.15rem; }
+    .score-minibar { width: 72px; height: 5px; background: rgba(0,0,0,0.08); border-radius: 3px; overflow: hidden; margin-top: 0.4rem; }
+    .score-minibar-fill { height: 100%; border-radius: 3px; transition: width 1s ease 0.4s; }
+    .ok  .score-minibar-fill { background: var(--green); }
+    .nok .score-minibar-fill { background: var(--red); }
+
+    /* Criteria */
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      color: var(--g700);
+      font-weight: 400;
+      margin-bottom: 0.625rem;
+    }
+    .crit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 0.875rem; }
+    .crit-result-card {
+      background: var(--white);
+      border-radius: var(--r);
+      padding: 1.125rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--g100);
+      animation: fadeUp 0.35s ease both;
+    }
+    .crn { font-size: 0.775rem; font-weight: 600; color: var(--g700); margin-bottom: 0.625rem; line-height: 1.35; }
+    .crs-row { display: flex; align-items: baseline; gap: 0.2rem; margin-bottom: 0.4rem; }
+    .crs-val { font-family: 'DM Serif Display', serif; font-size: 1.875rem; line-height: 1; }
+    .crs-max { font-size: 0.75rem; color: var(--g400); }
+    .crs-bar { height: 5px; background: var(--g100); border-radius: 3px; overflow: hidden; margin-bottom: 0.35rem; }
+    .crs-fill { height: 100%; border-radius: 3px; transition: width 0.85s ease 0.5s; }
+    .crs-desc { font-size: 0.695rem; color: var(--g400); line-height: 1.4; }
+
+    /* Score palette */
+    .sc5 .crs-val { color: #059669; } .sc5 .crs-fill { background: #10b981; }
+    .sc4 .crs-val { color: #2563eb; } .sc4 .crs-fill { background: #3b82f6; }
+    .sc3 .crs-val { color: #d97706; } .sc3 .crs-fill { background: #f59e0b; }
+    .sc2 .crs-val { color: #ea580c; } .sc2 .crs-fill { background: #f97316; }
+    .sc1 .crs-val { color: #dc2626; } .sc1 .crs-fill { background: #ef4444; }
+
+    /* Feedback */
+    .fb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; }
+    .fb-card {
+      background: var(--white);
+      border-radius: var(--r);
+      padding: 1.125rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--g100);
+    }
+    .fb-title {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-weight: 600; font-size: 0.825rem;
+      margin-bottom: 0.65rem;
+    }
+    .fb-ico {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.625rem;
+      flex-shrink: 0;
+    }
+    .fb-card.str .fb-title { color: #065f46; }
+    .fb-card.str .fb-ico { background: var(--green-light); color: var(--green); }
+    .fb-card.imp .fb-title { color: #92400e; }
+    .fb-card.imp .fb-ico { background: var(--amber-light); color: var(--amber); }
+    .fb-list { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .fb-list li {
+      font-size: 0.8rem;
+      line-height: 1.5;
+      padding-left: 1.1rem;
+      position: relative;
+      color: var(--g700);
+    }
+    .fb-card.str .fb-list li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; font-size: 0.7rem; top: 0.15rem; }
+    .fb-card.imp .fb-list li::before { content: '→'; position: absolute; left: 0; color: var(--amber); font-weight: 700; font-size: 0.7rem; top: 0.15rem; }
+
+    /* Summary */
+    .summary-card {
+      background: var(--white);
+      border-radius: var(--r);
+      padding: 1.375rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--g100);
+    }
+    .sum-lbl { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g400); margin-bottom: 0.45rem; }
+    .sum-text { font-size: 0.875rem; line-height: 1.8; color: var(--g700); font-style: italic; }
+
+    /* Collapsible details */
+    .detail-sec {
+      background: var(--white);
+      border-radius: var(--r);
+      border: 1px solid var(--g200);
+      overflow: hidden;
+    }
+    .detail-hdr {
+      padding: 0.75rem 1.125rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.775rem;
+      font-weight: 600;
+      color: var(--g500);
+      user-select: none;
+      transition: background var(--t);
+    }
+    .detail-hdr:hover { background: var(--g100); }
+    .detail-chev { transition: transform var(--t); font-size: 0.65rem; }
+    .detail-sec.open .detail-chev { transform: rotate(180deg); }
+    .detail-body { display: none; padding: 0.875rem 1.125rem; border-top: 1px solid var(--g100); }
+    .detail-sec.open .detail-body { display: block; }
+
+    .mono-block {
+      font-family: 'Courier New', monospace;
+      font-size: 0.775rem;
+      line-height: 1.7;
+      color: var(--g700);
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: var(--g100);
+      padding: 0.75rem 0.875rem;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--g200);
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    /* MediaPipe stats */
+    .mp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.625rem; }
+    .mp-stat {
+      background: var(--g100);
+      border-radius: 7px;
+      padding: 0.625rem;
+      border: 1px solid var(--g200);
+      text-align: center;
+    }
+    .mp-val { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--g900); line-height: 1; margin-bottom: 0.2rem; }
+    .mp-lbl { font-size: 0.67rem; color: var(--g500); line-height: 1.3; }
+
+    /* Error */
+    .error-card {
+      background: #fff1f2;
+      border: 1px solid #fecaca;
+      border-radius: var(--r);
+      padding: 1.375rem;
+      box-shadow: var(--shadow);
+    }
+    .err-title { font-weight: 600; color: #991b1b; margin-bottom: 0.3rem; font-size: 0.875rem; }
+    .err-msg { font-size: 0.8rem; color: #b91c1c; font-family: monospace; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 1.25rem; right: 1.25rem;
+      background: var(--g900);
+      color: white;
+      padding: 0.65rem 1.1rem;
+      border-radius: 8px;
+      font-size: 0.825rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.25s ease;
+      z-index: 999;
+      max-width: 300px;
+      pointer-events: none;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    .toast.ok  { border-left: 3px solid var(--green); }
+    .toast.err { border-left: 3px solid var(--red); }
+
+    /* Responsive */
+    @media (max-width: 720px) {
+      .layout { flex-direction: column; }
+      .sidebar { width: 100%; max-height: 55vh; overflow-y: auto; }
+      .fb-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 460px) {
+      .crit-grid { grid-template-columns: 1fr 1fr; }
+      .status-score { display: none; }
+      .welcome-steps { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-logo">Rev<em>Fast</em></div>
+  <div class="hdr-sep"></div>
+  <div class="hdr-sub">Evaluador de Presentaciones · CIL UADY</div>
+  <div class="hdr-pill">Sistema de apoyo a la evaluación</div>
+</header>
+
+<div class="layout">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
+
+    <!-- 1 · Video -->
+    <div class="sb-section">
+      <div class="sb-label">1 · Video</div>
+      <div class="upload-zone" id="uploadZone">
+        <input type="file" id="videoFile" accept="video/mp4,video/avi,video/quicktime,video/x-matroska,video/webm,.mp4,.avi,.mov,.mkv,.webm">
+        <svg class="upload-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
+        </svg>
+        <p>Arrastra el video aquí<br>o haz clic para seleccionar</p>
+        <div class="upload-filename" id="uploadFilename"></div>
+      </div>
+    </div>
+
+    <!-- 2 · Configuración -->
+    <div class="sb-section">
+      <div class="sb-label">2 · Configuración</div>
+
+      <div class="frow">
+        <label class="flabel" for="whisperModel">Modelo Whisper</label>
+        <select class="fcontrol" id="whisperModel">
+          <option value="tiny">Tiny — muy rápido, menor precisión</option>
+          <option value="base" selected>Base — equilibrado (recomendado)</option>
+          <option value="small">Small — más preciso</option>
+          <option value="medium">Medium — alta precisión</option>
+          <option value="large">Large — máxima precisión</option>
+        </select>
+      </div>
+
+      <div class="frow">
+        <label class="flabel" for="sampleEvery">Muestreo de fotogramas (cada N)</label>
+        <input type="number" class="fcontrol" id="sampleEvery" value="15" min="1" max="120">
+        <div class="fhint">Valor mayor = más rápido pero menos detalle corporal</div>
+      </div>
+
+      <div class="frow">
+        <label class="flabel" for="temaInput">Tema de la presentación</label>
+        <div class="tema-wrap">
+          <input type="text" class="fcontrol" id="temaInput" placeholder="ej. My family, My school, Hobbies…" value="libre">
+        </div>
+        <div class="fhint">Informa al modelo el tema asignado para la evaluación</div>
+      </div>
+    </div>
+
+    <!-- 3 · Rúbrica -->
+    <div class="sb-section">
+      <div class="accordion-hdr" id="rubricAccHdr" onclick="toggleAcc()">
+        <span class="sb-label">3 · Rúbrica</span>
+        <svg class="acc-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </div>
+      <div class="accordion-body" id="rubricBody">
+        <!-- Tabs -->
+        <div class="r-tabs">
+          <div class="r-tab active" onclick="rTab('general')">General</div>
+          <div class="r-tab" onclick="rTab('escala')">Escala</div>
+          <div class="r-tab" onclick="rTab('criterios')">Criterios</div>
+        </div>
+
+        <!-- General -->
+        <div class="r-panel active" id="rp-general">
+          <div class="fgrid2">
+            <div>
+              <label class="flabel">Nivel</label>
+              <input type="text" class="fcontrol" id="r-nivel" value="Elementary 1">
+            </div>
+            <div>
+              <label class="flabel">Idioma</label>
+              <select class="fcontrol" id="r-idioma">
+                <option value="en">Inglés (en)</option>
+                <option value="es">Español (es)</option>
+              </select>
+            </div>
+          </div>
+          <div class="fgrid2">
+            <div>
+              <label class="flabel">Escala mín.</label>
+              <input type="number" class="fcontrol" id="r-min" value="1" min="0" max="10" oninput="onScaleChange()">
+            </div>
+            <div>
+              <label class="flabel">Escala máx.</label>
+              <input type="number" class="fcontrol" id="r-max" value="5" min="1" max="20" oninput="onScaleChange()">
+            </div>
+          </div>
+          <div class="frow">
+            <label class="flabel">Umbral aprobatorio (puntuación total &gt; umbral)</label>
+            <input type="number" class="fcontrol" id="r-umbral" value="15">
+            <div class="fhint" id="umbralHint"></div>
+          </div>
+        </div>
+
+        <!-- Escala -->
+        <div class="r-panel" id="rp-escala">
+          <div id="scaleDescsContainer"></div>
+        </div>
+
+        <!-- Criterios -->
+        <div class="r-panel" id="rp-criterios">
+          <div id="criteriosList"></div>
+          <button class="btn-add-crit" onclick="addCriterio()">+ Agregar criterio</button>
+        </div>
+
+        <div class="r-actions">
+          <button class="btn-sm btn-ghost" onclick="resetRubric()">↺ Restaurar</button>
+          <button class="btn-sm btn-accent" onclick="saveRubric()">✓ Guardar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spacer to push button down -->
+    <div style="flex:1; min-height:0.5rem"></div>
+
+    <!-- Evaluate button -->
+    <button class="btn-eval" id="btnEval" onclick="startEval()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polygon points="5 3 19 12 5 21 5 3"/>
+      </svg>
+      Evaluar presentación
+    </button>
+  </aside>
+
+  <!-- ===== CONTENT ===== -->
+  <main class="content">
+
+    <!-- Welcome -->
+    <div class="welcome" id="stateWelcome">
+      <svg class="welcome-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.069A1 1 0 0121 8.82v6.36a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
+      </svg>
+      <h2>Listo para evaluar</h2>
+      <p>Sube el video de la presentación del alumno, configura los parámetros y presiona <strong>Evaluar presentación</strong>.</p>
+      <div class="welcome-steps">
+        <div class="ws"><div class="ws-num">1</div>Sube el video</div>
+        <div class="ws"><div class="ws-num">2</div>Escribe el tema</div>
+        <div class="ws"><div class="ws-num">3</div>Evaluar</div>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-view" id="stateProgress" style="display:none">
+      <div class="progress-card">
+        <div class="prog-spinner"></div>
+        <div class="prog-title">Analizando presentación…</div>
+        <div class="prog-msg" id="progMsg">Iniciando…</div>
+        <div class="prog-track">
+          <div class="prog-fill" id="progFill"></div>
+        </div>
+        <div class="prog-steps">
+          <div class="prog-step" id="ps1">Audio</div>
+          <div class="prog-step" id="ps2">Video</div>
+          <div class="prog-step" id="ps3">Gemini</div>
+          <div class="prog-step" id="ps4">Listo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="results-view" id="stateResults" style="display:none">
+      <div id="resStatus"></div>
+      <div>
+        <div class="section-title">Puntuación por criterio</div>
+        <div class="crit-grid" id="resCriteria"></div>
+      </div>
+      <div class="fb-grid" id="resFeedback"></div>
+      <div class="summary-card" id="resSummary"></div>
+      <div class="detail-sec" id="detTranscript">
+        <div class="detail-hdr" onclick="togDetail('detTranscript')">
+          <span>Transcripción del audio</span><span class="detail-chev">▾</span>
+        </div>
+        <div class="detail-body">
+          <pre class="mono-block" id="transcriptText"></pre>
+        </div>
+      </div>
+      <div class="detail-sec" id="detMp">
+        <div class="detail-hdr" onclick="togDetail('detMp')">
+          <span>Datos de análisis corporal (MediaPipe)</span><span class="detail-chev">▾</span>
+        </div>
+        <div class="detail-body">
+          <div class="mp-grid" id="mpGrid"></div>
+        </div>
+      </div>
+      <div class="detail-sec" id="detJson">
+        <div class="detail-hdr" onclick="togDetail('detJson')">
+          <span>Respuesta completa del modelo (JSON)</span><span class="detail-chev">▾</span>
+        </div>
+        <div class="detail-body">
+          <pre class="mono-block" id="rawJson"></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error -->
+    <div id="stateError" style="display:none; flex:1; align-items:center; justify-content:center; padding:2rem;">
+      <div class="error-card" style="max-width:520px;width:100%">
+        <div class="err-title">⚠ Error durante la evaluación</div>
+        <div class="err-msg" id="errMsg"></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   STATE
+   ============================================================ */
+let rubric = null;
+let jobId  = null;
+let pollTm = null;
+
+/* ============================================================
+   INIT
+   ============================================================ */
+async function init() {
+  await fetchRubric();
+  updateUmbralHint();
+}
+
+/* ============================================================
+   RUBRIC — server I/O
+   ============================================================ */
+async function fetchRubric() {
+  try {
+    const r = await fetch('/api/rubric');
+    if (!r.ok) throw new Error(await r.text());
+    rubric = await r.json();
+    populateRubricForm(rubric);
+    // Sync tema field
+    if (rubric.tema && rubric.tema !== 'libre') {
+      document.getElementById('temaInput').value = rubric.tema;
+    }
+  } catch (e) {
+    toast('No se pudo cargar la rúbrica: ' + e.message, 'err');
+  }
+}
+
+async function saveRubric() {
+  const r = buildRubricFromForm();
+  try {
+    const res = await fetch('/api/rubric', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(r),
+    });
+    const d = await res.json();
+    if (!res.ok) throw new Error(d.error || 'Error desconocido');
+    rubric = r;
+    toast('Rúbrica guardada correctamente', 'ok');
+  } catch (e) {
+    toast('Error al guardar: ' + e.message, 'err');
+  }
+}
+
+async function resetRubric() {
+  await fetchRubric();
+  toast('Rúbrica restaurada', 'ok');
+}
+
+/* ============================================================
+   RUBRIC — form rendering
+   ============================================================ */
+function populateRubricForm(r) {
+  document.getElementById('r-nivel').value  = r.nivel || '';
+  document.getElementById('r-idioma').value = r.idioma || 'en';
+  document.getElementById('r-min').value    = r.escala_min ?? 1;
+  document.getElementById('r-max').value    = r.escala_max ?? 5;
+  document.getElementById('r-umbral').value = r.umbral_aprobatorio ?? 15;
+  renderScaleDescs();
+  renderCriterios();
+  updateUmbralHint();
+}
+
+function buildRubricFromForm() {
+  const min = parseInt(document.getElementById('r-min').value)    || 1;
+  const max = parseInt(document.getElementById('r-max').value)    || 5;
+  const umbral = parseInt(document.getElementById('r-umbral').value) || 15;
+
+  const descripcion_escala = {};
+  for (let i = min; i <= max; i++) {
+    const el = document.getElementById(`dsc-${i}`);
+    descripcion_escala[String(i)] = el ? el.value.trim() : '';
+  }
+
+  const criterios = [];
+  document.querySelectorAll('.crit-card').forEach(card => {
+    const clave    = card.querySelector('.ci-clave').value.trim();
+    const nombre   = card.querySelector('.ci-nombre').value.trim();
+    const descrip  = card.querySelector('.ci-desc').value.trim();
+    if (clave && nombre) criterios.push({ clave, nombre, descripcion: descrip });
+  });
+
+  return {
+    nivel:               document.getElementById('r-nivel').value.trim(),
+    idioma:              document.getElementById('r-idioma').value,
+    tema:                document.getElementById('temaInput').value.trim() || 'libre',
+    escala_min:          min,
+    escala_max:          max,
+    umbral_aprobatorio:  umbral,
+    descripcion_escala,
+    criterios,
+  };
+}
+
+function onScaleChange() {
+  renderScaleDescs();
+  updateUmbralHint();
+}
+
+function updateUmbralHint() {
+  const min = parseInt(document.getElementById('r-min')?.value) || 1;
+  const max = parseInt(document.getElementById('r-max')?.value) || 5;
+  const n   = document.querySelectorAll('.crit-card').length || (rubric?.criterios?.length ?? 5);
+  const lo  = min * n;
+  const hi  = max * n;
+  const el  = document.getElementById('umbralHint');
+  if (el) el.textContent = `Rango posible: ${lo}–${hi} puntos`;
+}
+
+function renderScaleDescs() {
+  const min = parseInt(document.getElementById('r-min').value) || 1;
+  const max = parseInt(document.getElementById('r-max').value) || 5;
+  const existing = rubric?.descripcion_escala || {};
+  const defaults = {
+    '5': 'Completo dominio / excelente',
+    '4': 'Dominio adecuado / muy bueno',
+    '3': 'Dominio inadecuado / algo adecuado',
+    '2': 'Muy poco dominio / débil',
+    '1': 'Ningún dominio / muy débil',
+  };
+  const colors = ['#ef4444','#f97316','#f59e0b','#3b82f6','#10b981','#059669'];
+  const c = document.getElementById('scaleDescsContainer');
+  c.innerHTML = '';
+  for (let i = max; i >= min; i--) {
+    const col = colors[Math.min(i - 1, colors.length - 1)];
+    const row = document.createElement('div');
+    row.className = 'scale-row';
+    row.innerHTML = `
+      <div class="scale-badge" style="background:${col}20;color:${col}">${i}</div>
+      <input type="text" class="fcontrol" id="dsc-${i}"
+        value="${escHtml(existing[String(i)] || defaults[String(i)] || '')}"
+        placeholder="Descripción del nivel ${i}">
+    `;
+    c.appendChild(row);
+  }
+}
+
+function renderCriterios() {
+  document.getElementById('criteriosList').innerHTML = '';
+  (rubric?.criterios || []).forEach(c => addCriterioCard(c));
+  updateUmbralHint();
+}
+
+function addCriterio() {
+  addCriterioCard({ clave: '', nombre: '', descripcion: '' });
+  const cards = document.querySelectorAll('.crit-card');
+  cards[cards.length - 1].querySelector('.crit-fields').classList.add('open');
+  updateUmbralHint();
+}
+
+function addCriterioCard(c) {
+  const wrap = document.getElementById('criteriosList');
+  const n    = wrap.children.length + 1;
+  const card = document.createElement('div');
+  card.className = 'crit-card';
+  card.innerHTML = `
+    <div class="crit-card-hdr">
+      <div class="crit-num">${n}</div>
+      <div class="crit-name-display nd">${escHtml(c.nombre || 'Nuevo criterio')}</div>
+      <button class="btn-ico" onclick="toggleCritFields(this)" title="Editar">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+        </svg>
+      </button>
+      <button class="btn-ico del" onclick="delCriterio(this)" title="Eliminar">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="3 6 5 6 21 6"/>
+          <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/>
+        </svg>
+      </button>
+    </div>
+    <div class="crit-fields">
+      <div class="frow">
+        <label class="flabel">Clave (solo minúsculas, sin espacios)</label>
+        <input type="text" class="fcontrol ci-clave" value="${escHtml(c.clave)}" placeholder="ej. vocabulario">
+      </div>
+      <div class="frow">
+        <label class="flabel">Nombre</label>
+        <input type="text" class="fcontrol ci-nombre" value="${escHtml(c.nombre)}" placeholder="Nombre del criterio" oninput="updateND(this)">
+      </div>
+      <div class="frow">
+        <label class="flabel">Descripción para el modelo</label>
+        <input type="text" class="fcontrol ci-desc" value="${escHtml(c.descripcion)}" placeholder="Qué evalúa este criterio">
+      </div>
+    </div>
+  `;
+
+  // Auto-generate clave from nombre
+  const ni = card.querySelector('.ci-nombre');
+  const ki = card.querySelector('.ci-clave');
+  ni.addEventListener('input', () => {
+    if (!ki.dataset.manual) ki.value = toSlug(ni.value);
+  });
+  ki.addEventListener('input', () => { ki.dataset.manual = '1'; });
+
+  wrap.appendChild(card);
+}
+
+function toggleCritFields(btn) {
+  btn.closest('.crit-card').querySelector('.crit-fields').classList.toggle('open');
+}
+
+function delCriterio(btn) {
+  btn.closest('.crit-card').remove();
+  document.querySelectorAll('.crit-num').forEach((el, i) => { el.textContent = i + 1; });
+  updateUmbralHint();
+}
+
+function updateND(input) {
+  input.closest('.crit-card').querySelector('.nd').textContent = input.value || 'Criterio';
+}
+
+/* ============================================================
+   ACCORDION / TABS
+   ============================================================ */
+function toggleAcc() {
+  document.getElementById('rubricAccHdr').classList.toggle('open');
+  document.getElementById('rubricBody').classList.toggle('open');
+}
+
+function rTab(name) {
+  const names = ['general','escala','criterios'];
+  document.querySelectorAll('.r-tab').forEach((t, i) => t.classList.toggle('active', names[i] === name));
+  document.querySelectorAll('.r-panel').forEach(p => p.classList.toggle('active', p.id === 'rp-' + name));
+  if (name === 'escala')    renderScaleDescs();
+  if (name === 'criterios') renderCriterios();
+}
+
+function togDetail(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+/* ============================================================
+   FILE UPLOAD
+   ============================================================ */
+const zone    = document.getElementById('uploadZone');
+const fileIn  = document.getElementById('videoFile');
+const fnLabel = document.getElementById('uploadFilename');
+
+zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+zone.addEventListener('drop', e => {
+  e.preventDefault();
+  zone.classList.remove('drag-over');
+  const f = e.dataTransfer.files[0];
+  if (f) setFile(f);
+});
+fileIn.addEventListener('change', () => {
+  if (fileIn.files[0]) setFile(fileIn.files[0]);
+});
+
+function setFile(f) {
+  const dt = new DataTransfer();
+  dt.items.add(f);
+  fileIn.files = dt.files;
+  fnLabel.textContent = f.name;
+  fnLabel.style.display = 'block';
+}
+
+/* ============================================================
+   EVALUATION
+   ============================================================ */
+async function startEval() {
+  const f = fileIn.files[0];
+  if (!f) { toast('Selecciona un archivo de video primero.', 'err'); return; }
+
+  const r = buildRubricFromForm();
+  r.tema  = document.getElementById('temaInput').value.trim() || 'libre';
+
+  const fd = new FormData();
+  fd.append('video',        f);
+  fd.append('whisper_model', document.getElementById('whisperModel').value);
+  fd.append('sample_every',  document.getElementById('sampleEvery').value);
+  fd.append('tema',          r.tema);
+  fd.append('rubric',        JSON.stringify(r));
+
+  showState('progress');
+  setProgress(2, 'Subiendo video…', 0);
+  document.getElementById('btnEval').disabled = true;
+
+  try {
+    const res = await fetch('/api/evaluate', { method: 'POST', body: fd });
+    const d   = await res.json();
+    if (!res.ok) {
+      showState('error');
+      document.getElementById('errMsg').textContent = d.error || 'Error desconocido';
+      document.getElementById('btnEval').disabled = false;
+      return;
+    }
+    jobId = d.job_id;
+    poll();
+  } catch (e) {
+    showState('error');
+    document.getElementById('errMsg').textContent = e.message;
+    document.getElementById('btnEval').disabled = false;
+  }
+}
+
+function poll() {
+  if (!jobId) return;
+  clearTimeout(pollTm);
+  fetch(`/api/status/${jobId}`)
+    .then(r => r.json())
+    .then(d => {
+      if (d.error) {
+        showState('error');
+        document.getElementById('errMsg').textContent = d.error;
+        document.getElementById('btnEval').disabled = false;
+        return;
+      }
+      setProgress(d.progress || 0, d.message || '', d.step || 0);
+      if (d.status === 'done') {
+        document.getElementById('btnEval').disabled = false;
+        renderResults(d);
+      } else if (d.status === 'error') {
+        showState('error');
+        document.getElementById('errMsg').textContent = d.message;
+        document.getElementById('btnEval').disabled = false;
+      } else {
+        pollTm = setTimeout(poll, 2000);
+      }
+    })
+    .catch(() => { pollTm = setTimeout(poll, 3000); });
+}
+
+function setProgress(pct, msg, step) {
+  document.getElementById('progFill').style.width = pct + '%';
+  document.getElementById('progMsg').textContent  = msg;
+  for (let i = 1; i <= 4; i++) {
+    const el = document.getElementById(`ps${i}`);
+    el.className = 'prog-step' + (i < step ? ' done' : i === step ? ' active' : '');
+  }
+}
+
+/* ============================================================
+   RESULTS RENDERING
+   ============================================================ */
+function renderResults(data) {
+  const res       = data.result    || {};
+  const rb        = data.rubric    || {};
+  const criterios = rb.criterios   || [];
+  const eMax      = rb.escala_max  ?? 5;
+  const eMin      = rb.escala_min  ?? 1;
+  const umbral    = rb.umbral_aprobatorio ?? 15;
+  const pMax      = eMax * criterios.length;
+  const descEsc   = rb.descripcion_escala || {};
+  const score     = res.puntuacion_total  ?? 0;
+  const approved  = res.aprobado;
+  const scorePct  = pMax > 0 ? (score / pMax * 100) : 0;
+
+  /* Status */
+  document.getElementById('resStatus').innerHTML = `
+    <div class="status-card ${approved ? 'ok' : 'nok'}">
+      <div class="status-ico">${approved ? '✓' : '✗'}</div>
+      <div class="status-body">
+        <div class="status-verdict">${approved ? 'Presentación Aprobada' : 'Presentación No Aprobada'}</div>
+        <div class="status-detail">
+          Puntuación total: <strong>${score}</strong> de ${pMax} puntos ·
+          Umbral: ${umbral}
+          ${approved ? '· <strong>Por encima</strong> del umbral' : '· <strong>Por debajo</strong> del umbral'}
+        </div>
+      </div>
+      <div class="status-score">
+        <div class="score-big">${score}</div>
+        <div class="score-of">de ${pMax}</div>
+        <div class="score-minibar">
+          <div class="score-minibar-fill" style="width:0%" data-w="${scorePct}%"></div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  /* Criteria */
+  const cg = document.getElementById('resCriteria');
+  cg.innerHTML = '';
+  criterios.forEach((c, idx) => {
+    const val = res[c.clave];
+    if (val == null) return;
+    const pct  = eMax > eMin ? ((val - eMin) / (eMax - eMin) * 100) : 0;
+    const lbl  = descEsc[String(val)] || '';
+    const card = document.createElement('div');
+    const cls  = `sc${Math.min(Math.max(val, 1), 5)}`;
+    card.className = `crit-result-card ${cls}`;
+    card.style.animationDelay = (idx * 0.055) + 's';
+    card.innerHTML = `
+      <div class="crn">${escHtml(c.nombre)}</div>
+      <div class="crs-row">
+        <span class="crs-val">${val}</span>
+        <span class="crs-max">/ ${eMax}</span>
+      </div>
+      <div class="crs-bar"><div class="crs-fill" style="width:0%" data-w="${pct}%"></div></div>
+      <div class="crs-desc">${escHtml(lbl)}</div>
+    `;
+    cg.appendChild(card);
+  });
+
+  /* Feedback */
+  document.getElementById('resFeedback').innerHTML = `
+    <div class="fb-card str">
+      <div class="fb-title"><div class="fb-ico">✓</div>Fortalezas</div>
+      <ul class="fb-list">
+        ${(res.fortalezas || []).map(f => `<li>${escHtml(f)}</li>`).join('') || '<li>No se especificaron.</li>'}
+      </ul>
+    </div>
+    <div class="fb-card imp">
+      <div class="fb-title"><div class="fb-ico">→</div>Áreas de mejora</div>
+      <ul class="fb-list">
+        ${(res.areas_mejora || []).map(a => `<li>${escHtml(a)}</li>`).join('') || '<li>No se especificaron.</li>'}
+      </ul>
+    </div>
+  `;
+
+  /* Summary */
+  document.getElementById('resSummary').innerHTML = `
+    <div class="sum-lbl">Resumen del evaluador</div>
+    <div class="sum-text">${escHtml(res.resumen || '')}</div>
+  `;
+
+  /* Transcript */
+  document.getElementById('transcriptText').textContent = data.transcript || '(sin transcripción disponible)';
+
+  /* MediaPipe */
+  const mp = data.mp_summary || {};
+  document.getElementById('mpGrid').innerHTML = [
+    { v: mp.total_frames_sampled   ?? '—', l: 'Fotogramas analizados' },
+    { v: mp.face_detected_frames   ?? '—', l: 'Con rostro detectado' },
+    { v: mp.pose_detected_frames   ?? '—', l: 'Con pose detectada' },
+    { v: mp.avg_attention_score != null ? (mp.avg_attention_score * 100).toFixed(0) + '%' : '—', l: 'Puntuación de atención' },
+    { v: mp.gesture_frames?.left_wrist_raised  ?? '—', l: 'Gestos mano izquierda' },
+    { v: mp.gesture_frames?.right_wrist_raised ?? '—', l: 'Gestos mano derecha' },
+  ].map(s => `<div class="mp-stat"><div class="mp-val">${s.v}</div><div class="mp-lbl">${s.l}</div></div>`).join('');
+
+  /* Raw JSON */
+  document.getElementById('rawJson').textContent = JSON.stringify(res, null, 2);
+
+  showState('results');
+
+  /* Animate bars */
+  requestAnimationFrame(() => setTimeout(() => {
+    document.querySelectorAll('[data-w]').forEach(el => { el.style.width = el.dataset.w; });
+  }, 80));
+}
+
+/* ============================================================
+   UI HELPERS
+   ============================================================ */
+function showState(s) {
+  document.getElementById('stateWelcome').style.display  = s === 'welcome'  ? 'flex'  : 'none';
+  document.getElementById('stateProgress').style.display = s === 'progress' ? 'flex'  : 'none';
+  document.getElementById('stateResults').style.display  = s === 'results'  ? 'flex'  : 'none';
+  document.getElementById('stateError').style.display    = s === 'error'    ? 'flex'  : 'none';
+}
+
+function toast(msg, type = '') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = `toast ${type} show`;
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.classList.remove('show'), 3500);
+}
+
+function escHtml(s) {
+  if (!s) return '';
+  return String(s)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+
+function toSlug(s) {
+  return s
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9\s_]/g, '')
+    .replace(/\s+/g, '_')
+    .replace(/^[^a-z]+/, '')
+    .slice(0, 40);
+}
+
+/* ============================================================
+   BOOT
+   ============================================================ */
+init();
+</script>
+</body>
+</html>

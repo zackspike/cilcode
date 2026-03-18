@@ -137,6 +137,7 @@ def _build_system_prompt(rubric: dict) -> str:
     """
     nivel = rubric["nivel"]
     idioma = rubric["idioma"]
+    tema = rubric["tema"]
     escala_min = rubric["escala_min"]
     escala_max = rubric["escala_max"]
     umbral = rubric["umbral_aprobatorio"]
@@ -169,6 +170,7 @@ def _build_system_prompt(rubric: dict) -> str:
     return (
         f"Eres un evaluador experto del Centro Institucional de Lenguas (CIL) de la UADY.\n"
         f"Tu tarea es analizar la presentación de un alumno de nivel {nivel} "
+        f"considerando que el tema de la presentación es {tema} "
         f"(idioma de presentación: {idioma}) a partir de:\n"
         f"1. La transcripción de audio de la presentación.\n"
         f"2. Metadatos de análisis corporal (atención, gestos) obtenidos con MediaPipe.\n\n"

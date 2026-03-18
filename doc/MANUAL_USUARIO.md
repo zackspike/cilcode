@@ -69,7 +69,7 @@ Los modelos de Whisper se descargan también en la primera ejecución según el 
 
 ## 4. Configuración de la API (Gemini)
 
-RevFast utiliza el modelo `gemini-1.5-pro` de Google para generar la evaluación. Para esto se necesita una clave de API.
+RevFast utiliza el modelo `gemini-2.5-pro` de Google para generar la evaluación. Para esto se necesita una clave de API.
 
 ### 4.1 Obtener la clave
 
@@ -98,7 +98,7 @@ GOOGLE_API_KEY=TU_CLAVE_AQUI
 
 ## 5. Uso Básico
 
-### 5.1 Sintaxis del comando
+### 5.1 Sintaxis del comando (CLI)
 
 ```bash
 python main.py VIDEO_PATH [--whisper-model {tiny,base,small,medium,large}]
@@ -107,7 +107,17 @@ python main.py VIDEO_PATH [--whisper-model {tiny,base,small,medium,large}]
                           [--save]
 ```
 
-### 5.2 Opciones disponibles
+### 5.2 Sintaxis de la aplicación con interfaz en Web
+```
+python web/app.py
+# por defecto, la aplicación se abre en el puerto 5005
+# en caso de recibir error, modificar en el main de app.py
+# Abre http://127.0.0.1:5005
+```
+Se propone una interfaz web con el fin de facilitar la visualización y respuesta del modelo,
+pensado principalmente para personas con vago o nulo conocimiento en CLI.
+
+### 5.3 Opciones disponibles
 
 | Opción | Tipo | Default | Descripción |
 |---|---|---|---|
@@ -117,7 +127,7 @@ python main.py VIDEO_PATH [--whisper-model {tiny,base,small,medium,large}]
 | `--rubric RUBRIC_PATH` | string | Elementary 1 CIL | Ruta a un archivo JSON de rúbrica personalizada. |
 | `--save` | flag | desactivado | Guardar el resultado como `<video>_evaluation.json` junto al video. |
 
-### 5.3 Ejemplos
+### 5.4 Ejemplos
 
 **Evaluación básica con opciones predeterminadas:**
 ```bash
@@ -139,7 +149,7 @@ python main.py presentacion_alumno.mp4 --rubric rubrics/mi_nivel.json --save
 python main.py presentacion_alumno.mp4 --sample-every 5
 ```
 
-### 5.4 Ejemplo de salida esperada
+### 5.5 Ejemplo de salida esperada
 
 ```
 [1/3] Transcribing audio with Whisper (base) …
